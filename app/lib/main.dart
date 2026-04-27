@@ -44,12 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Minha Aplicação de Boas-Vindas.'),
         centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.notifications),
+         leading: IconButton(
+            icon: const Icon(Icons.home),
+            
             onPressed: () {},
           ),
-        ],
+
         backgroundColor: Colors.blueGrey,
       ),
       body: Center(
