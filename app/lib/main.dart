@@ -16,24 +16,64 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool _showName = false;
+
   void _onFabPressed() {
     print('Botão pressionado!');
+  }
+
+  void _onNameButtonPressed() {
+    setState(() {
+      _showName = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text('Minha Aplicação de Boas-Vindas.'),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {},
+          ),
+        ],
+        backgroundColor: Colors.blueGrey,
       ),
-      body: const Center(
-        child: Text(
-          'Bem-vindo ao mundo Flutter!',
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Bem-vindo ao mundo Flutter!',
+              textAlign: TextAlign.center,
+            ),
+            const Text(
+              'Subtítulo: Qualquer um.',
+              textAlign: TextAlign.center,
+            ),
+            ElevatedButton(
+              onPressed: _onNameButtonPressed,
+              child: const Text('Mostrar nome'),
+            ),
+            if (_showName)
+              const Text(
+                'Vinicius Queiroz',
+                textAlign: TextAlign.center,
+              ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
